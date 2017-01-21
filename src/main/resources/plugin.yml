@@ -1,0 +1,9 @@
+name: ChatColor
+main: kr.mocha.ChatColor
+version: 1.0-SNAPSHOT
+author: mocha
+api: [1.0.0]
+
+permissions :
+ color.chat.cmd :
+  default : OP
