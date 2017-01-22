@@ -16,18 +16,20 @@ public class SetColorCommand extends Command {
 
     public SetColorCommand() {
         super("setcolor", "Enable color chat", "/setcolor <player> <color>");
-        setPermission("color.chat.cmd");
+        setPermission("color.set.cmd");
         config = ChatColor.getInstance().config;
     }
 
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
         try {
-            Player player = Server.getInstance().getPlayer(args[0]);
-            config.set(player.getName(), args[1]);
-            config.save();
-            sender.sendMessage("§"+player.getName()+"'s chat color changed");
-            player.sendMessage("§"+args[1]+"your chat color changed");
+            if(args[1].length()==1) {
+                Player player = Server.getInstance().getPlayer(args[0]);
+                config.set(player.getName(), args[1]);
+                config.save();
+                sender.sendMessage("§" + player.getName() + "'s chat color changed");
+                player.sendMessage("§" + args[1] + "your chat color changed");
+            }else sender.sendMessage(TextFormat.RED+"this is not color code");
         }catch (Exception e) {
             sender.sendMessage(TextFormat.RED+getUsage());
         }
